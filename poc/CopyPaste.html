@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        <span>Deleniti nihil id accusamus neque provident</span> sed architecto
+        adipisci deserunt, sint maiores quo. Alias tenetur optio reiciendis
+        similique corporis excepturi blanditiis officia.
+    </p>
+    <p>
+        Quasi rem minus aliquid error aperiam impedit alias voluptatem.
+        Excepturi ipsa perferendis <span>nobis quasi magnam</span>, impedit ex
+        atque sunt modi qui iusto numquam. Perferendis earum assumenda est
+        cumque pariatur tenetur!
+      </p>
+      <p contenteditable="true">
+        Paste your content here.
+      </p>
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            document.addEventListener('copy',doCopy);
+        })
+        function doCopy(ev){
+            let selection = document.getSelection();
+            console.log(selection.toString());
+            ev.clipboardData.setData('text/plain',selection);
+            ev.preventDefault();
+        }
+        function doPaste(e){
+            let data=e.clipboardData.getData('text/plain');
+            console.log(data);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+}
+:root{
+    --bgColor: white;
+    --fontColor:black;
+}
+/* ****************************Title Container******************* */
+.title_container{
+    height:1.7rem;
+    text-align: center;
+    font-size: large;
+    padding-top: 3px;
+    background-color: rgb(33,115,70);
+    color:white
+}
+/* *********************** Menu Container***************** */
+.menu_container{
+    display: flex;
+    /* background-color: rgba(228, 225, 225, 0.993); */
+    background-color: rgb(245,245,245);
+    height:5rem;
+    align-items: center;
+    color:rgb(83, 81, 81);
+}
+.SDO_container{
+    height:80%;
+    border-right: 1px solid;
+    width:4rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items:center;
+
+}
+.SDO_icon{
+    font-size: 1.7rem;;
+}
+
+.formatting_container{
+    display: flex;
+    flex-direction: column;
+    height:80%;
+    border-right:1px solid;
+    width: 16rem;
+
+}
+.subgroup_1{
+    height:50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.font_family{
+    width:7rem;
+    height:1.5rem;
+    font-size: 1rem;;
+}
+.font_size{
+    height:1.5rem;
+    font-size: 1rem;;
+}
+.big_font{
+    font-size: 1.5rem;
+}
+.subgroup_2{
+    height:50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.subgroup_section{
+    border-right: 1px solid;
+    height:80%;
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.BUI_container{
+    width:60%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.bold,.underline,.italic{
+    font-size: 1.2rem;
+}
+.fa-border-all{
+    font-size: 1.5rem;
+}
+.cell_border{
+    margin-left: 3px;
+    width:1rem;
+    height:1rem;
+}
+.color_container{
+    display: flex;
+    justify-content: space-evenly;
+    border-right: none;
+}
+.fill_color_box{
+    height:1.4rem;
+    padding-bottom: 1px;
+    width:1rem;  
+    border-bottom: 5px solid;
+    border-color: var(--bgColor);
+}
+.fill_color{
+    height:100%;
+}
+.font_color_box{
+    height:1.4rem;
+    padding-bottom: 1px;
+    width:1rem;  
+    border-bottom: 5px solid;
+    border-color: var(--fontColor);
+}
+#color,#bg-color{
+    height:1px;
+    width:10px;
+    margin-top: 12px;
+}
+.alignment_container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-right: 1px solid;
+    width: 10rem;
+    height: 80%;
+}
+.align_icon{
+    font-size: 1.5rem;;
+}
+.button_active{
+    color: rgb(185, 181, 181);
+}
+
+/* **********************Formula Container********************** */
+.formula_container{
+    display: flex;
+    height:3rem;
+    
+    align-items: center;
+    /* background-color: rgba(228, 225, 225, 0.993); */
+    background-color: rgb(230,230,230);
+}
+.address_bar{
+    height:50%;
+    width:8vw;
+    margin-left: 10px;
+    text-align: center;
+    font-size: 1rem;
+    
+}
+.separator{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.formula_menu{
+    height:50%;
+    width:8vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid;
+    background-color: white
+}
+.formula_icon{
+    font-size: 1.2rem;
+    color:grey
+}
+.formula_bar{
+    height:50%;
+    margin-left: 10px;
+    width:80%;
+}
+#function{
+    height:1.2rem;
+}
+
+/* ******************************Grid Container********************* */
+.grid_container{
+    position: relative;
+    height:calc(100vh - (1.7rem + 5rem + 3rem + 2rem));
+    overflow:auto;
+}
+.top_left_block{
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    top:0px;
+    left:0px;
+    /* code to make half triangle */
+    background: 
+     linear-gradient(to top left,transparent 40%,rgba(228, 225, 225, 0.993) 0) top right/40px 40px no-repeat,
+     rgb(160, 159, 159);
+    z-index: 100;
+}
+.top_row{
+    height:25px;
+    /* background-color:rgba(228, 225, 225, 0.993);; */
+    background-color: rgb(230,230,230);
+    color: black;
+    display: flex;
+    position: absolute;
+    top:0px;
+    left:25px;
+    z-index:90;
+}
+.top_row_box{
+    min-width: 80px;
+    max-width:80px;
+    min-height: 25px;
+    border-left: 1px solid rgb(170, 170, 170);;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.top_row_box:hover{
+    background-color: rgba(82, 202, 82, 0.527);
+}
+.left_col{
+    width:25px;
+    /* background-color:rgba(228, 225, 225, 0.993);; */
+    background-color: rgb(230,230,230);
+    position: absolute;
+    top:25px;
+    left:0px;
+    z-index:90;
+}
+.left_col_box{
+    min-height: 25px;
+    /* width: 25px; */
+    border: 1px solid rgb(170, 170, 170);
+    border-left: none;
+    border-top: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.left_col_box:hover{
+    background-color: rgba(82, 202, 82, 0.527);
+}
+.grid{
+    position: absolute;
+    top:25px;
+    left:25px;
+}
+.row{
+    display: flex;
+}
+.col{
+    /* height:25px;
+    width: 80px; */
+    min-width: 80px;
+    max-width: 80px;
+    min-height: 25px;
+    border:1px solid rgb(214, 211, 211);
+}
+.active_cell{
+    background-color: rgb(182, 179, 179)
+}
+/* *******************************Sheet Container******************************* */
+.sheet_container{
+    display: flex;
+    height:2rem;
+    /* background-color: rgba(228, 225, 225, 0.993); */
+    background-color: rgb(230,230,230);
+    overflow-x: auto;
+    align-items: center;
+}
+.sheet_icon{
+    
+    height: 1.3rem;
+    width: 1.3rem;
+    font-size: 1.3rem;
+    text-align: center;
+    color: grey;
+    font-weight: 100px;
+    margin-right:5px;
+}
+.sheet_list{
+    display: flex;
+    height:2rem;
+}
+.sheet{
+   
+    min-height:100%;
+    max-height: 100%;
+    display: flex;
+    min-width: 60px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+.sheet_active{
+    color:#0c7a0ce8;
+    text-decoration: underline;
+    font-weight: 600;
+    background-color: white;
+}
+
+
+.function_active{
+    border:2px solid black;
+}

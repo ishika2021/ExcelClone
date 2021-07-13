@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="title_container"> Excel</div>
+    <input type="file" style="display: none;" class="file_getter">
+    <div class="menu_container">
+        <div class="SDO_container">
+            <i class="fas fa-file-download download SDO_icon"></i>
+            <i class="fas fa-folder-open open SDO_icon"></i>
+            <i class="fas fa-file newFile SDO_icon"></i>
+        </div>
+        <div class="formatting_container">
+            <div class="subgroup_1">
+                <select id="font_family" class="font_family">
+                    <option value="Arial">Arial</option>
+                    <option value="Cambria">Cambria</option>
+                    <option value="Gerogia">Gerogia</option>
+                    <option value="Monospace">Monospace</option>
+                    <option value="san-serif">san-serif</option>
+                    <option value="cursive">cursive</option>
+                </select>
+                <select id="font_size" class="font_size">
+                    <option value="10">10</option>
+                    <option value="18">18</option>
+                    <option value="26">26</option>
+                    <option value="34">34</option>
+                    <option value="42">42</option>
+                    <option value="50">50</option> 
+                </select>
+                    <i class="fas fa-font big_font"></i>
+                    <i class="fas fa-font small_font"></i>
+            </div>
+            <div class="subgroup_2">
+                <div class="subgroup_section BUI_container">
+                    <i class="fas fa-bold bold"></i>
+                    <i class="fas fa-underline underline"></i>
+                    <i class="fas fa-italic italic"></i>
+
+                </div>
+                <div class="subgroup_section border_container">
+                    <i class="fas fa-border-all full_border"></i>
+                    <select class="cell_border"id="cell_border">
+                        <option value="UpperBorder">Upper</option>
+                        <option value="LowerBorder">Lower</option>
+                        <option value="RightBorder">Right</option>
+                        <option value="LeftBorder">Left</option>
+                        <option value="NoBorder">None</option>
+                    </select>
+                </div>
+                <div class="subgroup_section color_container">
+                    <div class="fill_color_box">
+                        <img src="icons8-fill-color-24.png" class="fill_color"alt="">
+                    </div>
+                    <input type="color" id="bg-color">
+                    <div class="font_color_box">
+                        <i class="fas fa-font font_color"></i>
+                    </div>
+                    <input type="color" id="color">
+                </div>
+            </div>
+        </div>
+        <div class="alignment_container">
+            <i class="fas fa-align-left align_icon left"></i>
+            <i class="fas fa-align-justify align_icon center"></i>
+            <i class="fas fa-align-right align_icon right"></i>
+        </div>
+    </div>
+    <div class="formula_container">
+        <input type="text" class="address_bar">
+        <div class="separator">:</div>
+        <div class="formula_menu">
+            <i class="fas fa-times formula_icon"></i>
+            <img src="fx-sign.png" id="function" alt="">
+        </div>
+        <input type="text" class="formula_bar">
+    </div>
+    <div class="grid_container">
+        <div class="top_left_block"></div>
+        <div class="top_row"></div>
+        <div class="left_col"></div>
+        <div class="grid"></div>
+    </div>
+    <div class="sheet_container">
+        <div class="add_sheet_container">
+            <i class="fas fa-plus-circle sheet_icon"></i>
+        </div>
+        <div class="sheet_list">
+            <div class="sheet" sheetIdx="1">Sheet 1</div>
+        </div>
+    </div>
+<script src="init.js"></script>
+<script src="format.js"></script>
+<script src="script.js"></script>
+<script src="dwOpenSave.js"></script>
+</body>
+</html>
