@@ -6,7 +6,7 @@
     --bgColor: white;
     --fontColor:black;
 }
-/* ****************************Title Container******************* */
+/* ************************************************Title Container****************************************************************** */
 .title_container{
     height:1.7rem;
     text-align: center;
@@ -15,10 +15,9 @@
     background-color: rgb(33,115,70);
     color:white
 }
-/* *********************** Menu Container***************** */
+/* ************************************************ Menu Container***************************************************************** */
 .menu_container{
     display: flex;
-    /* background-color: rgba(228, 225, 225, 0.993); */
     background-color: rgb(245,245,245);
     height:5rem;
     align-items: center;
@@ -138,13 +137,11 @@
     color: rgb(185, 181, 181);
 }
 
-/* **********************Formula Container********************** */
+/* ****************************************************Formula Container********************************************************** */
 .formula_container{
     display: flex;
     height:3rem;
-    
     align-items: center;
-    /* background-color: rgba(228, 225, 225, 0.993); */
     background-color: rgb(230,230,230);
 }
 .address_bar{
@@ -153,7 +150,6 @@
     margin-left: 10px;
     text-align: center;
     font-size: 1rem;
-    
 }
 .separator{
     padding-left: 10px;
@@ -181,7 +177,7 @@
     height:1.2rem;
 }
 
-/* ******************************Grid Container********************* */
+/* *********************************************************Grid Container******************************************************* */
 .grid_container{
     position: relative;
     height:calc(100vh - (1.7rem + 5rem + 3rem + 2rem));
@@ -201,7 +197,6 @@
 }
 .top_row{
     height:25px;
-    /* background-color:rgba(228, 225, 225, 0.993);; */
     background-color: rgb(230,230,230);
     color: black;
     display: flex;
@@ -215,7 +210,6 @@
     max-width:80px;
     min-height: 25px;
     border-left: 1px solid rgb(170, 170, 170);;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -225,7 +219,6 @@
 }
 .left_col{
     width:25px;
-    /* background-color:rgba(228, 225, 225, 0.993);; */
     background-color: rgb(230,230,230);
     position: absolute;
     top:25px;
@@ -234,7 +227,6 @@
 }
 .left_col_box{
     min-height: 25px;
-    /* width: 25px; */
     border: 1px solid rgb(170, 170, 170);
     border-left: none;
     border-top: none;
@@ -254,8 +246,6 @@
     display: flex;
 }
 .col{
-    /* height:25px;
-    width: 80px; */
     min-width: 80px;
     max-width: 80px;
     min-height: 25px;
@@ -264,17 +254,15 @@
 .active_cell{
     background-color: rgb(182, 179, 179)
 }
-/* *******************************Sheet Container******************************* */
+/* ***************************************************Sheet Container************************************************************** */
 .sheet_container{
     display: flex;
     height:2rem;
-    /* background-color: rgba(228, 225, 225, 0.993); */
     background-color: rgb(230,230,230);
     overflow-x: auto;
     align-items: center;
 }
 .sheet_icon{
-    
     height: 1.3rem;
     width: 1.3rem;
     font-size: 1.3rem;
@@ -288,7 +276,6 @@
     height:2rem;
 }
 .sheet{
-   
     min-height:100%;
     max-height: 100%;
     display: flex;

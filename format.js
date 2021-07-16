@@ -1,7 +1,9 @@
-// addressBar=document.querySelector(".address_bar");
 let boldBtn=document.querySelector(".bold");
 let underlineBtn=document.querySelector(".underline");
 let italicBtn=document.querySelector(".italic");
+let leftBtn=document.querySelector(".left");
+let centerBtn=document.querySelector(".center");
+let rightBtn=document.querySelector(".right");
 let fontFamilyBtn=document.querySelector(".font_family");
 let fontSizeBtn=document.querySelector(".font_size");
 let fontIncBtn=document.querySelector(".big_font");
@@ -15,7 +17,7 @@ let fullBorderBtn=document.querySelector(".full_border");
 let alignmentArr=document.querySelectorAll(".align_icon");
 let root=document.querySelector(":root");
 
-// ********************FONT STYLE BUTTONS******************
+// *******************************************************FONT STYLE BUTTONS*****************************************************
 boldBtn.addEventListener("click",function(){
     let address=addressBar.value;
     let {rid,cid}=getRidCidFromAddress(address);
@@ -66,7 +68,7 @@ italicBtn.addEventListener("click",function(){
         cellObj.italic=false;
     }
 })
-// ********************FONT PROPERTIES BUTTONS*****************
+// ****************************************************FONT PROPERTIES BUTTONS**************************************************
 fontFamilyBtn.addEventListener("change",function(){
     let address=addressBar.value;
     let family=fontFamilyBtn.value;
@@ -154,7 +156,7 @@ fontDecBtn.addEventListener("click",function(){
         }
     }
 })
-// *******************Cell Color and border***********************
+// ************************************************Cell Color and border**************************************************************
 bgColorBtn.addEventListener("change",function(){
     let color=bgColorBtn.value;
     console.log(color);
@@ -232,7 +234,7 @@ fullBorderBtn.addEventListener("click",function(){
     let cellObj=sheetDB[rid][cid];
     cellObj.border="fullBorder";
 })
-// *******************Font Alignment*********************************
+// ************************************************************Font Alignment*******************************************************
 for(let i=0;i<alignmentArr.length;i++){
     alignmentArr[i].addEventListener("click",function(e){
         let icon=e.currentTarget;
@@ -240,21 +242,28 @@ for(let i=0;i<alignmentArr.length;i++){
         let {rid,cid}=getRidCidFromAddress(address);
         let cell=document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
         let cellObj=sheetDB[rid][cid];
+        for(let i=0;i<alignmentArr.length;i++){
+            alignmentArr[i].classList.remove("button_active");
+        }
+
         let alignType=icon.classList[3];
         cellObj.halign=alignType;
         switch(alignType){
             case "left":cell.style.textAlign="left";
+                         leftBtn.classList.add("button_active");
                         break;
             case "center":cell.style.textAlign="center";
+                        centerBtn.classList.add("button_active");
                         break;
             case "right":cell.style.textAlign="right";
+                        rightBtn.classList.add("button_active")
                         break;
         }
 
     })
 }
 
-// ********************Helper Function*******************************
+// **********************************************************Helper Function********************************************************
 function getRidCidFromAddress(address){
     //A1
     let colAdd=address.charCodeAt(0);

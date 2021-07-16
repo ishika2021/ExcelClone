@@ -39,7 +39,7 @@ function initCurrentSheetDb(){
                 fontSize:"16",
                 bgColor:"white",
                 fontColor:"black",
-                halign:"left",
+                halign:"",
                 value:"",
                 formula:"",
                 border:"1px solid rgb(214, 211, 211)",
@@ -50,6 +50,5 @@ function initCurrentSheetDb(){
         sheetDB.push(row);
     }
     worksheetDB.push(sheetDB);
-// console.log(worksheetDB);
 }
 initCurrentSheetDb();

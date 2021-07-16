@@ -17,9 +17,8 @@ let sheetDB=worksheetDB[0];
 clearFormulaBtn.addEventListener("click",function(){
     formulaBar.value="";
 })
-// ******************Sheet***********************
+// *****************************************************Sheet*********************************************************************
 function addNewSheet(){
-    console.log("new sheet is added");
     let sheetArr=document.querySelectorAll(".sheet");
     let lastSheet=sheetArr[sheetArr.length-1];
     let lastSheetIdx=lastSheet.getAttribute("sheetIdx");
@@ -49,6 +48,7 @@ function handleClickedSheet(e){
         })
         currSheet.classList.add("sheet_active");
     }
+
     let sheetIdx=currSheet.getAttribute("sheetIdx");
     sheetDB=worksheetDB[sheetIdx-1];
     setUI(sheetDB);
@@ -60,7 +60,7 @@ function initUI(){
         allCells[i].style.textDecoration = "none";
         allCells[i].style.fontFamily = "Arial";
         allCells[i].style.fontSize = "16px";
-        allCells[i].style.textAlign = "left";
+        allCells[i].style.textAlign = "";
         allCells[i].style.backgroundColor="white";
         allCells[i].style.color="black";
         allCells[i].style.border="1px solid rgb(214, 211, 211)";
@@ -75,9 +75,8 @@ function setUI(sheetDB){
     for(let i=0;i<sheetDB.length;i++){
         for(let j=0;j<sheetDB[0].length;j++){
             let cell=document.querySelector(`.col[rid="${i}"][cid="${j}"]`);
-            // console.log("cell",cell);
             let {bold,underline,italic,fontFamily,fontSize,bgColor,fontColor,
-            halign,value,formula,border,children,}=sheetDB[i][j];
+            halign,value,border}=sheetDB[i][j];
             cell.style.fontWeight= bold == true? "bold":"normal";
             cell.style.fontStyle = italic == true?"italic":"normal";
             cell.style.textDecoration = underline == true?"underline":"none";
@@ -86,8 +85,6 @@ function setUI(sheetDB){
             cell.style.backgroundColor= bgColor;
             cell.style.color=fontColor;
             cell.innerText=value;
-            // cell.formula=formula;
-            // cell.children=children;
             switch(halign){
                 case "left":cell.style.textAlign="left";
                             break;
@@ -118,32 +115,33 @@ function setUI(sheetDB){
         }
     }
 }
-// ****************Grid*************************
+// ****************************************************Grid*********************************************************************
 for(let i=0;i<allCells.length;i++){
     allCells[i].addEventListener("click",handleClickedCell);
     allCells[i].addEventListener("keydown",function(){
+        // To sync the header col's height with cell's he
         let obj=allCells[i].getBoundingClientRect();
         let height=obj.height;
         let address=addressBar.value;
-        let {rid,cid}=getRidCidFromAddress(address);
+        let {rid}=getRidCidFromAddress(address);
         let leftCol=document.querySelectorAll(".left_col .left_col_box")[rid];
         leftCol.style.height=height+"px";
     })
 }
 gridContainer.addEventListener("scroll",function(){
+    // To make the header row and col move along with the scroll
     let top=gridContainer.scrollTop;
     let left=gridContainer.scrollLeft;
     topLeftBlock.style.top=top+"px";
     topRow.style.top=top+"px";
     leftCol.style.left=left+"px";
     topLeftBlock.style.left=left+"px";
-
 })
 allCells[0].click();
 for(let i=0;i<allCells.length;i++){
     allCells[i].addEventListener("keyup",function(e){
         let currentCell=e.currentTarget;
-
+        // WHen the formula is being entered from the cell
         if(currentCell.innerText.charAt(0)=="="){
             if(currentCell.innerText!="=")
                 formulaBar.value=currentCell.innerText.substring(1);
@@ -178,16 +176,7 @@ for(let i=0;i<allCells.length;i++){
         }
     });
 }
-for(let i=0;i<allCells.length;i++){
-    allCells[i].addEventListener("keyup",function(e){
-        if(e.key=="Shift"){
 
-            let cell=e.currentTarget;
-            console.log(cell);
-        }
-        
-    })
-}
 function handleClickedCell(e){
     let currentCell=e.currentTarget;
     let parentRow=currentCell.parentNode.parentNode.parentNode.children[1].children;
@@ -217,11 +206,40 @@ function handleClickedCell(e){
     addressBar.value=cellAdd;
     let cellObj=sheetDB[rid][cid];
     
-    // To show formula of respective cell, set empty when none.
+    // To sync the menu bar with the cell's DB
     if(cellObj.formula!=""){
         formulaBar.value=cellObj.formula;
     }else{
         formulaBar.value="";
+    }
+    
+    if(cellObj.bold==true){
+        boldBtn.classList.add("button_active");
+    }else{
+        boldBtn.classList.remove("button_active");
+    }
+
+    if(cellObj.italic==true){
+        italicBtn.classList.add("button_active");
+    }else{
+        italicBtn.classList.remove("button_active");
+    }
+
+    if(cellObj.underline==true){
+        underlineBtn.classList.add("button_active");
+    }else{
+        underlineBtn.classList.remove("button_active");
+    }
+
+    for(let i=0;i<alignmentArr.length;i++){
+        alignmentArr[i].classList.remove("button_active");
+    }
+    if(cellObj.halign=="left"){
+        leftBtn.classList.add("button_active");
+    }else if(cellObj.halign=="right"){
+        rightBtn.classList.add("button_active");
+    }else if(cellObj.halign=="center"){
+        centerBtn.classList.add("button_active");
     }
 }
 for(let i=0;i<allCells.length;i++){
@@ -245,8 +263,9 @@ for(let i=0;i<allCells.length;i++){
     })
 }
 
-// ***************Formula*************************
+// *************************************************************Formula****************************************************************
 formulaBar.addEventListener("keydown",function(e){
+    // When the formula is being entered from the formula bar
     if(e.key=="Enter"&&formulaBar!=""){
         let newFormula=formulaBar.value;
         let address=addressBar.value;
@@ -274,7 +293,8 @@ formulaBar.addEventListener("keydown",function(e){
         }else{
             alert(`There are one or more circular refrences where a formula refers to its own cell either directly or indirectly. This might cause them to calculate incorrectly.
             Try removing or changing these refrences, or moving the formulas to different cells.`)
-            setValueOnUI(prevValue,rid,cid);
+            // To avoid having NaN on the cells after a cycle is detected
+            setValueOnUI(prevValue,rid,cid); 
             setValueOnDB(prevValue,"",rid,cid);
             changeChildren(cellObj);
             return;
@@ -301,6 +321,7 @@ function setValueOnDB(result,formula,rid,cid){
     }
 }
 function addSpaceToFormula(formula){
+    // adding space to the entered fromula for evaluation
     let newFormula="";
     for(let i=0;i<formula.length;i++){
         let ch=formula.charAt(i);
@@ -319,11 +340,11 @@ function addSpaceToFormula(formula){
     return newFormula;
 }
 function evaluateFormula(formula){
+    // converting the addrresses from their values in the formula 
     let formulaTokens=formula.split(" ");
     for(let i=0;i<formulaTokens.length;i++){
         let ch=formulaTokens[i].charCodeAt(0);
         if(ch>=65 && ch<=90){
-            // console.log("ch=",ch, "and token=",formulaTokens[i]);
             let {rid,cid}=getRidCidFromAddress(formulaTokens[i]);
             let cellObj=sheetDB[rid][cid];
             let {value}=cellObj;
@@ -335,6 +356,7 @@ function evaluateFormula(formula){
     
 }
 function checkForCycle(cellObj,formulaTokens){
+    // Check for any cycle present in the formula
     if(cellObj.children.length==0){
         return false;
     }
@@ -358,6 +380,7 @@ function checkForCycle(cellObj,formulaTokens){
     return false;
 }
 function calculateResult(formula){
+    // Using Infix Evaluation for calculating the formula
     formula=formula.split(" ");
     let operand=[];
     let operator=[];
@@ -394,7 +417,6 @@ function calculateResult(formula){
                    let result=calculate(val1,val2,op);
                    operand.push(result);   
        }
-    console.log(operand[operand.length-1]);
     return operand[operand.length-1];
 }
 function setValueOnUI(result,rid,cid){
@@ -402,29 +424,22 @@ function setValueOnUI(result,rid,cid){
     cell.innerText=result;
 }
 function changeChildren(cellObj){
-    // console.log("Change children is called for ",cellObj)
+    // Change children whenever a cell's value is being updated
     let childrenArr=cellObj.children;
     for(let i=0;i<childrenArr.length;i++){
-        console.log("change children is called for",childrenArr[i]);
         let childAdd=childrenArr[i];
         let childRIDCID=getRidCidFromAddress(childAdd);
         let childCellObj=sheetDB[childRIDCID.rid][childRIDCID.cid];
         let childFormula=childCellObj.formula;
-        // console.log(childFormula);
         let result=evaluateFormula(childFormula,childRIDCID.rid,childRIDCID.cid);
         childCellObj.value=result;
         setValueOnUI(result,childRIDCID.rid,childRIDCID.cid,);
         changeChildren(childCellObj);
-
     }
    
 }
 function removeFormula(cellObj,address){
-    console.log("Reove formula is called for,",address);
     let formula=cellObj.formula;
-    if(formula==""){
-        console.log("formula is empty");
-    }
     let formulaTokens=formula.split(" ");
     for(let i=0;i<formulaTokens.length;i++){
         let ch=formulaTokens[i].charCodeAt(0);
@@ -439,9 +454,8 @@ function removeFormula(cellObj,address){
     cellObj.formula="";
 
 }
-// ******************Helper function*********************
+// **********************************************************Helper function***********************************************************
 function getRidCidFromAddress(address){
-    //A1
     let colAdd=address.charCodeAt(0);
     let rowAdd=address.slice(1);
     let rid=Number(rowAdd)-1;
